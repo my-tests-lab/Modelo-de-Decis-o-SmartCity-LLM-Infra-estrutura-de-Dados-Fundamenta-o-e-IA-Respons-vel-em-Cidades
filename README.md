@@ -1,0 +1,1 @@
+# Modelo-de-Decis-o-SmartCity-LLM-Infra-estrutura-de-Dados-Fundamenta-o-e-IA-Respons-vel-em-Cidades
