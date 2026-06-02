@@ -173,71 +173,50 @@ Pede para fornecer o output do endpoint.
 ## ChatGPT
 
 ### Resposta
-[]()
-
-
+[https://chatgpt.com/share/69e626a0-771c-8330-b401-dffdf1bbbf55](https://chatgpt.com/share/69e626a0-771c-8330-b401-dffdf1bbbf55)
 
 ## Deepseek
 
 ### Resposta
-[]()
-
-
+[https://chat.deepseek.com/share/qrmsoa3voaqku6khmn](https://chat.deepseek.com/share/qrmsoa3voaqku6khmn)
 
 ## Perplexity
 
 ### Resposta
-[]()
-
-```
-
-```
-
-
-
-```html
-
-```
-
-
+[https://www.perplexity.ai/search/tens-o-endpoint-https-baze-cm-Zfq1x9xnSYK4zb2Y9cI.Kg](https://www.perplexity.ai/search/tens-o-endpoint-https-baze-cm-Zfq1x9xnSYK4zb2Y9cI.Kg)
 
 ## Copilot
 
 ### Resposta
-[]()
-
-```
-
-```
-
-
-
-```html
-
-```
-
+[https://copilot.microsoft.com/conversations/join/4UpsJbCMx3BQ1pDLtQLfP](https://copilot.microsoft.com/conversations/join/4UpsJbCMx3BQ1pDLtQLfP)
 
 ## Gemini
 
 ### Resposta
-[]()
-
-
-
-| Sensor        | Localização (Maia) | Parâmetro Principal          | Status           |
-|---------------|--------------------|------------------------------|------------------|
-| est-meteov2   | Centro             | Temperatura / Humidade       | Ativo            |
-| spek1         | Zona Industrial    | Qualidade do Ar / Partículas | Ativo            |
-| est-meteoplus | Parque Central     | Multissensorial              | Visualização Web |
-| est-meteo     | Aeroporto/Arredores| Meteorologia Geral           | Visualização Web |
-
-
+[https://gemini.google.com/share/8217f481752c](https://gemini.google.com/share/8217f481752c)
 
 # Análise/Síntese
 
 ### Claude
 
+Mostra alguma informação sobre os passos que realizou para obter a resposta. Aparentemente só analisa o endpoint, não analisa fontes adicionais.
 
+Neste caso, identificou que existe um exemplo de utilização no payload retornado.
+
+Analisa o json e encontra algumas questões, faz sugestão de várias melhorias. Coloca algumas questões que são discutíveis e que teriam de ser verificadas por alguém com mais conhecimento do sistema, por exemplo:
+- Datas impossíveis ou incoerentes: "AE Castelo v25" tem data 2025-10-03 (futura à época de criação) e "EcoCaminhoV3" tem data 2020-04-14 mas o nome sugere versão de 2023. "MDC-CMMaia-UMaia" tem data 2014-01-12, muito anterior ao projeto.
+
+Nas tendências, analisa as datas e identifica períodos da construção do endpoint.
+
+Parece identificar o que o endpoint representa e embora identifique que é apresentado um exemplo, não explora essa questão e não dá informação explícita acerca dos endpoints de dados disponibilizados.
+
+Uma vez que detetou o exemplo, etc., verifiquei se era capaz de apresentar informação acerca da Bacia hidrográfica do Rio Leça a partir do endpoint.
+
+O LLM respondeu que não lhe era permitido aceder diretamente a URLs construídas pelo LLM, só podia fazer fetch a URLs que o utilizador forneça explicitamente ou que apareçam em resultados de pesquisa anteriores. Apesar disto, o LLM identificou o dataset e datasets relacionados com o que pedi, no json do endpoint. Ou seja, consegue "encontrar/construir" os urls, mas não os consegue usar diretamente, aparentemente tem restrições de segurança. 
+
+Para avançar precisa de confirmação do utilizador. Mesmo depois de eu confirmar, continua a não conseguir aceder. Agora indica que, infelizmente o sistema continua a bloquear o acesso, a restrição é técnica e não depende da tua autorização: o sistema só permite fetch a URLs que apareçam literalmente numa resposta anterior de pesquisa ou fetch, não a URLs construídos por mim mesmo que sejam derivados de um endpoint que já analisámos. 
+
+Finalmente, pede para fornecer o output do endpoint.
 
 ### ChatGPT
 
