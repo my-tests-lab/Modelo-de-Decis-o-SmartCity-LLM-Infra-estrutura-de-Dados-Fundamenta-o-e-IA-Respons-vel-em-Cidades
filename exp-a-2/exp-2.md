@@ -11,7 +11,6 @@ Tens o endpoint https://baze.cm-maia.pt/BaZe/api/api4gj.php
 7. Indica o que falta fazer para os endpoints serem mais explicativos / autoexplicativos
 Responde de forma estruturada.
 
-
 ```
 
 ## Claude
