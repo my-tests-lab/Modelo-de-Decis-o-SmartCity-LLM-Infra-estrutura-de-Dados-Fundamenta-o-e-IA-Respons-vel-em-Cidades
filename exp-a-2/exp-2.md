@@ -163,7 +163,7 @@ O que podes fazer para contornar isto:
 - Ou usa o curl no terminal:
 
 ```bash
-  curl "https://baze.cm-maia.pt/BaZe/api/api4gj.php?nome=dgpt_rioleca_bachidro"
+curl "https://baze.cm-maia.pt/BaZe/api/api4gj.php?nome=dgpt_rioleca_bachidro"
 ```
 
 Assim que colares o GeoJSON aqui, faço imediatamente a análise completa — propriedades, geometria, visualização no mapa e interpretação dos dados.
@@ -220,23 +220,108 @@ Finalmente, pede para fornecer o output do endpoint.
 
 ### ChatGPT
 
+Apresenta fontes explicitamente.
 
+Identifica explicitamente que quando o endpoint é chamado sem parâmetros, devolve a lista de objetos GeoJSON disponíveis; quando chamado com ?nome=..., devolve o objeto geográfico correspondente.
+
+Aparentemente, usa informação/fontes externas, públicas, para obter informação acerca do endpoint.
+
+Apresenta bastante informação, mas acima de tudo suposições e não analisa a estrutura do GeoJson retornado pelo endpoint, ou pelo menos parece que não.
+
+Por isso, não dá segurança na análise que apresenta. 
+
+Penso que não analisou o que o endpoint retorna. Sob este ponto de vista, a análise é pouco útil. Resposta longa mas com pouco valor.
+
+Tenho a sensação que, provavelmente, daria uma resposta mais concreta depois de alguns prompts. 
 
 ### DeepSeek
 
+Não apresenta fontes nem referências.
 
+Identifica explicitamente que se pode chamar a API (endpoint) com um parâmetro para obter dados.
+
+Nas tendências, faz uma análise detalhada a vários níveis. Penso que talvez a mais detalhada entre todos os LLMs.
+
+Nas anomalias, identifica questões na estrutura do GeoJson, como o Claude. O Claude e o Deep identificam coisas comuns, mas também identificam, cada um deles, coisas diferentes.
+
+Apresentam várias questões e melhorias (Claude e Deep).
+
+Quando lhe peço para: usando o endpoint https://baze.cm-maia.pt/BaZe/api/api4gj.php
+mostra-me a informação disponível acerca da Bacia hidrográfica do Rio Leça.
+
+Encontra informação, diz como chamar a API, indica o que no GeoJson está relacionado, mas não chama a API.
+
+Quando peço para: usando o endpoint https://baze.cm-maia.pt/BaZe/api/api4gj.php
+mostra-me a informação disponível acerca da Bacia hidrográfica do Rio Leça num mapa, aqui no chat.
+
+O LLM responde que não consegue gerar ou exibir mapas diretamente no chat. É um modelo de texto e não tem a capacidade de mostrar visualizações gráficas, como mapas interativos ou estáticos.
+
+Não consegue mostrar, mas dá-me instruções para fazer a visualização usando o https://geojson.io. Experimentei e funciona.
 
 ### Perplexity
 
+Mostra informação acerca dos passos, fontes e referências usados para obter a resposta.
 
+Parece fazer a análise do endpoint com base em informação recolhida de outras fontes, por exemplo, https://baze.cm-maia.pt/BaZe/piscg.htm e refere outras páginas, e.g., x4rt.php.
+
+Indica que: Pelo contexto do site, trata-se de um endpoint de uma API REST usada para expor séries temporais de medições operacionais, como consumo de energia, produção fotovoltaica, radiação e outras variáveis monitorizadas pela Câmara Municipal da Maia no projeto BaZe/D4Maia. 
+
+Não fala em GeoJson. Baseia-se muito em piscg.htm. Embora seja capaz de obter informação que indica que os dados podem ser consultados via REST e que existe um catálogo de endpoints para os diferentes dados monitorizados.
+
+Como a análise é efetuada sobre fontes externas, a informação apresentada em muitas situações é vaga e apresenta suposições.
+
+Nas tendências apresenta suposições e analisa a questão de uma forma diferente do Claude e do Deep.
+
+No caso das anomalias, refere-se ao que é apresentado em piscg.htm. Não usou o payload retornado pelo endpoint.
+
+Resposta longa mas com muitas suposições e pouco detalhe efetivo e concreto acerca do endpoint.
+
+Muito texto, pouca informação concreta, a leitura é um pouco cansativa.
 
 ### Copilot
 
+Não mostra passos, fontes ou referências.
 
+Aparentemente analisou o GeoJson.
+
+Identifica que o endpoint expõe um catálogo de objetos GeoJSON.
+
+Identifica as 4 variáveis do GeoJson “o”, como o Claude e o Deep. O Deep apresentou com mais detalhe. Cada LLM apresentou os campos de forma mais ou menos semelhante (mas aqui existe suposição natural se a informação não for dada ou encontrada, por isso isto é mais ou menos espectável).
+
+Nas tendências, analisou um pouco ao estilo do Claude.
+
+Nas anomalias, apresentou várias, como o Claude e Deep, mas de uma forma menos detalhada.
+
+Nas possíveis interpretações, apresenta um conjunto de suposições.
+
+Nas limitações, apresenta um conjunto de questões, algumas comuns a outros LLMs, com pouco detalhe.
+
+Apresenta várias sugestões de melhoria.
+
+A resposta deste LLM parece mais resumida e com menos detalhe do que as respostas do Claude e do Deep.
 
 ### Gemini
 
+Não apresenta passos, referências e/ou fontes.
 
+Parece que a análise é baseada em suposições e que não analisou o GeoJson retornado pelo endpoint. Podia ser transparente e claro acerca disto. A resposta não dá confiança.
+
+Nas tendências, apresenta tendências de sazonalidade, etc. Não sei de onde vieram estes dados. Penso que está a apresentar suposições.
+
+Nas anomalias, apresenta coisas a que se deve ter atenção, mas não analisou/refere o GeoJson do endpoint.
+
+Apresenta sugestões de interpretação genéricas.
+
+Nas limitações dos dados, não faço ideia onde é que o LLM foi buscar as conclusões que apresenta.
+
+Nas melhorias, apresenta coisas como Nomes Legíveis: Substituir códigos obscuros por nomes claros (ex: em vez de st_01, usar sensor_temperatura_centro_maia). Não faço ideia onde o LLM foi buscar isto st_01?
 
 # Conclusões
 
+Mais interessante: Claude, Deep, Copilot, Chat GPT, Perplexity e Gemini.
+
+O Gemini parece pouco útil. 
+
+O Deep apresenta as coisas com algum detalhe, mas não apresenta fontes e referências, o que me parece cada vez mais essencial para garantir transparência e rastreabilidade.
+
+Os LLMs baseados em texto podem impor limitações naquilo que é possível obter diretamente a partir do LLM no próprio chat.
